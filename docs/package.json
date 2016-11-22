@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~2.2.0",
     "@angular/router": "~3.2.0",
     "@angular/upgrade": "~2.2.0",
+    "@types/gapi": "0.0.29",
+    "@types/gapi.auth2": "0.0.31",
     "angular-in-memory-web-api": "~0.1.15",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8",
