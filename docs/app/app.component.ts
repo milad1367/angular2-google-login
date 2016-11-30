@@ -3,16 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import {InfoComponent} from './info.component' 
 
 export class Hero {
-  name:string;
-  email:string;
+   name:string;
+   email:string;
 }
 
 @Component({
-  selector: 'my-app',
-  template: `
+   selector: 'my-app',
+   template: `
   <div>
-    <div  id="my-signin2" (data-onsuccess)="onSignIn"></div>  
+     <div  id="my-signin2" (data-onsuccess)="onSignIn"></div>  
   </div>
+  
   <a href="#" (click)="signOut()">Sign out</a>
 
   <div *ngIf="t">
