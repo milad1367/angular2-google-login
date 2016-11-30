@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }   from './app.component';
 import { InfoComponent }   from './info.component';
 import { RouterModule, Routes } from '@angular/router';
+import {Component, Directive, Input, ViewChild,NgZone} from '@angular/core';
 
 @NgModule({
   imports:      [ BrowserModule,
