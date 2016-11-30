@@ -1,0 +1,6 @@
+<div  id="my-signin2" (data-onsuccess)="onSignIn"></div> 
+<div *ngIf="fShowInfo">
+  <h2> {{infoProfile.name}} </h2>
+  <h2> {{infoProfile.email}} </h2>
+  <a href="#" (click)="signOut()">Sign out</a>
+</div>

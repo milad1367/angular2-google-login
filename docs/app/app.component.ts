@@ -1,41 +1,19 @@
 import { Component,NgZone  } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {InfoComponent} from './info.component' 
-
-export class Hero {
-   name:string;
-   email:string;
-}
+import {InfoComponent} from './info.component'; 
+import {InfoProfile} from './infoProfile';
 
 @Component({
+   moduleId: module.id,
    selector: 'my-app',
-   template: `
-  <div>
-     <div  id="my-signin2" (data-onsuccess)="onSignIn"></div>  
-  </div>
-  
-  <a href="#" (click)="signOut()">Sign out</a>
-
-  <div *ngIf="t">
-     {{userDisplayName}}
-     {{userEmailAddres}}
-  </div>
-  
-
-  `
+   templateUrl: 'app.component.html',
+   styleUrls: ['app.component.css']
 })
 export class AppComponent {
-   heroes :Hero[] = [{name:'mm',email:'mmm'}] ;
-   hero:Hero = {name:'',email:''};
-   userDisplayName = "";
-   userEmailAddres = "";
-   t = false;
- constructor(private zone: NgZone){
-   console.log(this);
- }
-
-
- ngAfterViewInit() {
+  infoProfile:InfoProfile = {name:'',email:''};
+  fShowInfo = false;
+  constructor(private zone: NgZone){}
+  ngAfterViewInit() {
     gapi.signin2.render('my-signin2', {    
         'onsuccess': param => this.onSignIn(param),
         'scope': 'profile email',
@@ -45,10 +23,9 @@ export class AppComponent {
         'theme': 'light'
         
     });
-
-}
+  }
   onSignIn(googleUser) {
-    this.t = true;
+    this.fShowInfo = true;
     var profile = googleUser.getBasicProfile();
        // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
        // console.log('Full Name: ' + profile.getName());
@@ -56,24 +33,16 @@ export class AppComponent {
        // console.log('Family Name: ' + profile.getFamilyName());
        // console.log("Image URL: " + profile.getImageUrl());
        // console.log("Email: " + profile.getEmail());
-       this.zone.run(() => { this.userDisplayName = profile.getName(),
-                             this.userEmailAddres = profile.getEmail(),
+       this.zone.run(() => { this.infoProfile.name = profile.getName(),
+                             this.infoProfile.email = profile.getEmail(),
                              console.log(profile)
                              
        })   
   };
-   signOut() {
-     var auth2 = gapi.auth2.getAuthInstance();
-     auth2.signOut();
-     this.t = false;
+  signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut();
+    this.fShowInfo = false;
   }
-
-
-  addHero(hero: Hero){
-     if(hero.name){
-     this.heroes.push(hero);
-    }
-  }
-
 
 }
