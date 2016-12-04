@@ -1,6 +1,6 @@
 import { Component,NgZone  } from '@angular/core';
 import {InfoProfile} from './infoProfile';
-
+declare var gapi: any;
 @Component({
   moduleId: module.id,
   selector: 'my-app',
